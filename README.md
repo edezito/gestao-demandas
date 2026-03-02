@@ -1,47 +1,164 @@
-# 🚀 Sistema de Gestão de Demandas (Projetos e Tickets)
+🚀 Sistema de Gestão de Demandas (Projetos e Tickets)
+Aplicação web full-stack desenvolvida para gestão de projetos e suas respectivas tarefas (tickets). O projeto demonstra a construção de uma API RESTful robusta com Laravel, consumida de forma assíncrona por um frontend leve desenvolvido em JavaScript Vanilla (Fetch API).
 
-Uma aplicação web full-stack desenvolvida para gerir projetos e as suas respetivas tarefas (tickets). Este projeto demonstra a construção de uma **API RESTful** robusta com Laravel, consumida de forma assíncrona por um frontend leve desenvolvido em **Javascript Vanilla** (Fetch API).
+📋 Índice
+Tecnologias Utilizadas
 
-## 🛠️ Tecnologias Utilizadas
+Arquitetura
 
-* **Backend:** PHP 8.x, Laravel 11/12
-* **Frontend:** HTML5, CSS3, Javascript Puro (Vanilla JS), Blade Templates
-* **Base de Dados:** MySQL
+Pré-requisitos
 
-## 🏗️ Decisões de Arquitetura
+Instalação e Execução
 
-Para evidenciar as melhores práticas de desenvolvimento, o projeto foi desenhado com as seguintes premissas:
+Documentação da API
 
-* **Separação de Responsabilidades (API-First):** O backend foi construído estritamente como uma API de dados (retornando JSON via `routes/api.php`). O frontend atua como um cliente independente, comunicando via `Fetch API`.
-* **Frontend Leve (SPA-like):** Em vez de recarregar a página a cada ação, a interface utiliza Javascript Vanilla para buscar, criar e eliminar registos dinamicamente.
-* **Tratamento de Erros e Validação:** As requisições inválidas ou pesquisas por IDs inexistentes (404) são tratadas nativamente pelo Laravel (Route Model Binding), garantindo respostas padronizadas em formato JSON.
-* **Exclusão em Cascata:** A integridade referencial foi garantida na base de dados. Ao eliminar um projeto, todos os tickets associados são automaticamente removidos.
+Estrutura do Banco de Dados
 
-## ⚙️ Pré-requisitos
+Contribuição
 
-Certifique-se de ter os seguintes programas instalados na sua máquina:
+Licença
 
-* [PHP 8.2 ou superior](https://www.php.net/)
-* [Composer](https://getcomposer.org/)
-* [MySQL](https://www.mysql.com/) (Servidor a correr na porta 3306)
+🛠️ Tecnologias Utilizadas
+Backend
+PHP 8.2+ - Linguagem de programação
 
-## 🚀 Como Executar o Projeto Localmente
+Laravel 11/12 - Framework PHP para desenvolvimento da API
 
-Siga o passo a passo abaixo para iniciar a aplicação no seu ambiente de desenvolvimento:
+MySQL - Sistema de gerenciamento de banco de dados relacional
 
-**1. Clone o repositório:**
-```bash
-git clone [https://github.com/SEU_UTILIZADOR/NOME_DO_REPOSITORIO.git](https://github.com/SEU_UTILIZADOR/NOME_DO_REPOSITORIO.git)
+Frontend
+HTML5 - Estruturação das páginas
+
+CSS3 - Estilização responsiva
+
+JavaScript Vanilla - Manipulação do DOM e consumo da API via Fetch
+
+Blade Templates - Template engine do Laravel para views iniciais
+
+🏗️ Arquitetura
+O projeto foi desenvolvido seguindo boas práticas e padrões de mercado:
+
+🔄 API-First Design
+Backend construído exclusivamente como API RESTful (routes/api.php)
+
+Respostas em formato JSON padronizado
+
+Frontend como cliente independente consumindo a API via Fetch
+
+⚡ Frontend Leve (SPA-like)
+Interface dinâmica sem recarregamento de página
+
+Operações CRUD realizadas via requisições assíncronas
+
+Manipulação direta do DOM para atualização em tempo real
+
+🛡️ Tratamento de Erros Robusto
+Utilização do Route Model Binding do Laravel para validação automática de recursos
+
+Respostas padronizadas para erros 404 e validações
+
+Tratamento adequado de exceções
+
+🔗 Integridade Referencial
+Exclusão em cascata configurada no banco de dados
+
+Ao excluir um projeto, todos os tickets associados são automaticamente removidos
+
+Garantia de consistência dos dados
+
+⚙️ Pré-requisitos
+Antes de iniciar, certifique-se de ter instalado em sua máquina:
+
+PHP 8.2 ou superior
+
+Composer - Gerenciador de dependências PHP
+
+MySQL 5.7 ou superior
+
+Git - Controle de versão
+
+🚀 Instalação e Execução
+Siga os passos abaixo para executar o projeto em seu ambiente local:
+
+1. Clone o Repositório
+bash
+git clone https://github.com/SEU_USUARIO/NOME_DO_REPOSITORIO.git
 cd NOME_DO_REPOSITORIO
-2. Instale as dependências do PHP:Bashcomposer install
-3. Configure o ficheiro de ambiente:Faça uma cópia do ficheiro .env.example e renomeie-a para .env:Bashcp .env.example .env
-4. Gere a chave da aplicação:Bashphp artisan key:generate
-5. Configure a Base de Dados (MySQL):Crie uma base de dados no seu MySQL chamada gestor_demandas. Depois, no ficheiro .env, configure as suas credenciais:Snippet de códigoDB_CONNECTION=mysql
+2. Instale as Dependências do PHP
+bash
+composer install
+3. Configure o Ambiente
+bash
+# Copie o arquivo de exemplo de ambiente
+cp .env.example .env
+
+# Gere a chave da aplicação
+php artisan key:generate
+4. Configure o Banco de Dados
+Crie uma base de dados MySQL chamada gestor_demandas e configure o arquivo .env:
+
+env
+DB_CONNECTION=mysql
 DB_HOST=127.0.0.1
 DB_PORT=3306
 DB_DATABASE=gestor_demandas
 DB_USERNAME=root
 DB_PASSWORD=sua_senha_aqui
-6. Execute as Migrações:Para criar as tabelas necessárias na base de dados:Bashphp artisan migrate
-7. Inicie o Servidor Local:Bashphp artisan serve
-Aceda à aplicação através do seu navegador em: http://127.0.0.1:8000📡 Documentação da API (Endpoints)A API base do projeto encontra-se no prefixo /api. O sistema responde sempre com o cabeçalho Content-Type: application/json.📂 Projetos (/api/projects)MétodoEndpointDescriçãoGET/api/projectsLista projetos (suporta parâmetros ?page=1 e ?q=termo)POST/api/projectsCria um novo projetoGET/api/projects/{id}Retorna os detalhes de um projeto específico e os seus ticketsPUT/api/projects/{id}Atualiza os dados de um projetoDELETE/api/projects/{id}Elimina um projeto (e as suas dependências em cascata)🎫 Tickets (/api/tickets)MétodoEndpointDescriçãoGET/api/projects/{id}/ticketsLista todos os tickets pertencentes a um projetoPOST/api/projects/{id}/ticketsAdiciona um novo ticket a um projetoGET/api/tickets/{id}Retorna detalhes de um ticket específicoPATCH/api/tickets/{id}Atualiza parcialmente os dados de um ticketDELETE/api/tickets/{id}Elimina um ticket
+5. Execute as Migrações
+bash
+# Cria as tabelas no banco de dados
+php artisan migrate
+6. Inicie o Servidor Local
+bash
+php artisan serve
+Acesse a aplicação em: http://127.0.0.1:8000
+
+📡 Documentação da API
+A API está disponível sob o prefixo /api e todas as respostas são em formato JSON com o cabeçalho Content-Type: application/json.
+
+📁 Projetos
+Método	Endpoint	Descrição	Parâmetros
+GET	/api/projects	Lista todos os projetos	?page=1 (paginação)
+?q=termo (busca)
+POST	/api/projects	Cria um novo projeto	name (obrigatório)
+description
+GET	/api/projects/{id}	Detalhes de um projeto específico	-
+PUT	/api/projects/{id}	Atualiza um projeto	name
+description
+DELETE	/api/projects/{id}	Remove um projeto e seus tickets	-
+Exemplo de Payload (POST/PUT)
+json
+{
+  "name": "Projeto Exemplo",
+  "description": "Descrição detalhada do projeto"
+}
+🎫 Tickets
+Método	Endpoint	Descrição	Parâmetros
+GET	/api/projects/{id}/tickets	Lista tickets de um projeto	-
+POST	/api/projects/{id}/tickets	Adiciona ticket a um projeto	title (obrigatório)
+description
+GET	/api/tickets/{id}	Detalhes de um ticket específico	-
+PATCH	/api/tickets/{id}	Atualiza parcialmente um ticket	Campos a atualizar
+DELETE	/api/tickets/{id}	Remove um ticket	-
+Exemplo de Payload (POST/PATCH)
+json
+{
+  "title": "Título do Ticket",
+  "description": "Descrição da tarefa"
+}
+📊 Estrutura do Banco de Dados
+Tabela: projects
+Campo	Tipo	Descrição
+id	bigint	Chave primária
+name	varchar	Nome do projeto
+description	text	Descrição detalhada
+created_at	timestamp	Data de criação
+updated_at	timestamp	Data de atualização
+Tabela: tickets
+Campo	Tipo	Descrição
+id	bigint	Chave primária
+title	varchar	Título do ticket
+description	text	Descrição da tarefa
+project_id	bigint	Chave estrangeira (projects.id)
+created_at	timestamp	Data de criação
+updated_at	timestamp	Data de atualização
