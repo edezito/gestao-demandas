@@ -1,87 +1,77 @@
-🚀 Sistema de Gestão de Demandas (Projetos e Tickets)
-Aplicação web full-stack desenvolvida para gestão de projetos e suas respectivas tarefas (tickets). O projeto demonstra a construção de uma API RESTful robusta com Laravel, consumida de forma assíncrona por um frontend leve desenvolvido em JavaScript Vanilla (Fetch API).
+# 🚀 Sistema de Gestão de Demandas (Projetos e Tickets)
 
-📋 Índice
-Tecnologias Utilizadas
+Aplicação web full-stack desenvolvida para gestão de projetos e suas respectivas tarefas (tickets). O projeto demonstra a construção de uma **API RESTful** robusta com Laravel, consumida de forma assíncrona por um frontend leve desenvolvido em **JavaScript Vanilla** (Fetch API).
 
-Arquitetura
+## 📋 Índice
 
-Pré-requisitos
+- [Tecnologias Utilizadas](#-tecnologias-utilizadas)
+- [Arquitetura](#-arquitetura)
+- [Pré-requisitos](#-pré-requisitos)
+- [Instalação e Execução](#-instalação-e-execução)
+- [Documentação da API](#-documentação-da-api)
+- [Estrutura do Banco de Dados](#-estrutura-do-banco-de-dados)
+- [Contribuição](#-contribuição)
+- [Licença](#-licença)
 
-Instalação e Execução
+## 🛠️ Tecnologias Utilizadas
 
-Documentação da API
+### Backend
 
-Estrutura do Banco de Dados
+- **PHP 8.2+** - Linguagem de programação
+- **Laravel 11/12** - Framework PHP para desenvolvimento da API
+- **MySQL** - Sistema de gerenciamento de banco de dados relacional
 
-Contribuição
+### Frontend
 
-Licença
+- **HTML5** - Estruturação das páginas
+- **CSS3** - Estilização responsiva
+- **JavaScript Vanilla** - Manipulação do DOM e consumo da API via Fetch
+- **Blade Templates** - Template engine do Laravel para views iniciais
 
-🛠️ Tecnologias Utilizadas
-Backend
-PHP 8.2+ - Linguagem de programação
+## 🏗️ Arquitetura
 
-Laravel 11/12 - Framework PHP para desenvolvimento da API
-
-MySQL - Sistema de gerenciamento de banco de dados relacional
-
-Frontend
-HTML5 - Estruturação das páginas
-
-CSS3 - Estilização responsiva
-
-JavaScript Vanilla - Manipulação do DOM e consumo da API via Fetch
-
-Blade Templates - Template engine do Laravel para views iniciais
-
-🏗️ Arquitetura
 O projeto foi desenvolvido seguindo boas práticas e padrões de mercado:
 
-🔄 API-First Design
-Backend construído exclusivamente como API RESTful (routes/api.php)
+### 🔄 API-First Design
 
-Respostas em formato JSON padronizado
+- Backend construído exclusivamente como API RESTful (`routes/api.php`)
+- Respostas em formato JSON padronizado
+- Frontend como cliente independente consumindo a API via Fetch
 
-Frontend como cliente independente consumindo a API via Fetch
+### ⚡ Frontend Leve (SPA-like)
 
-⚡ Frontend Leve (SPA-like)
-Interface dinâmica sem recarregamento de página
+- Interface dinâmica sem recarregamento de página
+- Operações CRUD realizadas via requisições assíncronas
+- Manipulação direta do DOM para atualização em tempo real
 
-Operações CRUD realizadas via requisições assíncronas
+### 🛡️ Tratamento de Erros Robusto
 
-Manipulação direta do DOM para atualização em tempo real
+- Utilização do Route Model Binding do Laravel para validação automática de recursos
+- Respostas padronizadas para erros 404 e validações
+- Tratamento adequado de exceções
 
-🛡️ Tratamento de Erros Robusto
-Utilização do Route Model Binding do Laravel para validação automática de recursos
+### 🔗 Integridade Referencial
 
-Respostas padronizadas para erros 404 e validações
+- Exclusão em cascata configurada no banco de dados
+- Ao excluir um projeto, todos os tickets associados são automaticamente removidos
+- Garantia de consistência dos dados
 
-Tratamento adequado de exceções
+## ⚙️ Pré-requisitos
 
-🔗 Integridade Referencial
-Exclusão em cascata configurada no banco de dados
-
-Ao excluir um projeto, todos os tickets associados são automaticamente removidos
-
-Garantia de consistência dos dados
-
-⚙️ Pré-requisitos
 Antes de iniciar, certifique-se de ter instalado em sua máquina:
 
-PHP 8.2 ou superior
+- [PHP](https://www.php.net/) 8.2 ou superior
+- [Composer](https://getcomposer.org/) - Gerenciador de dependências PHP
+- [MySQL](https://www.mysql.com/) 5.7 ou superior
+- [Git](https://git-scm.com/) - Controle de versão
 
-Composer - Gerenciador de dependências PHP
+## 🚀 Instalação e Execução
 
-MySQL 5.7 ou superior
-
-Git - Controle de versão
-
-🚀 Instalação e Execução
 Siga os passos abaixo para executar o projeto em seu ambiente local:
 
-1. Clone o Repositório
-bash
+### 1. Clone o Repositório
+
+```bash
 git clone https://github.com/SEU_USUARIO/NOME_DO_REPOSITORIO.git
 cd NOME_DO_REPOSITORIO
 2. Instale as Dependências do PHP
