@@ -130,7 +130,3 @@ Todas as requisições devem conter o cabeçalho `Accept: application/json`.
 * `title`: String
 * `description`: Text
 
-
-### Dica Extra:
-
-Gostaria que eu gerasse o código de um **Controller** específico ou de uma **Migration** para garantir que a lógica de exclusão em cascata que mencionei no README esteja correta?
