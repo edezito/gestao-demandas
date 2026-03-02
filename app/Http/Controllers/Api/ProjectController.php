@@ -14,14 +14,14 @@ class ProjectController extends Controller
     {
         $query = Project::query();
 
-        // filtro por nome
-        if ($request->has('q')) {
+        // Filtro por nome
+        if ($request->filled('q')) {
             $query->where('name', 'like', '%' . $request->q . '%');
         }
 
-        $projects = $query->paginate(10);
-
-        return ProjectResource::collection($projects);
+        return ProjectResource::collection(
+            $query->paginate(10)
+        );
     }
 
     // POST /api/projects
@@ -37,19 +37,17 @@ class ProjectController extends Controller
         return new ProjectResource($project);
     }
 
-    // GET /api/projects/{id}
-    public function show($id)
+    // GET /api/projects/{project}
+    public function show(Project $project)
     {
-        $project = Project::with('tickets')->findOrFail($id);
+        $project->load('tickets');
 
         return new ProjectResource($project);
     }
 
-    // PUT /api/projects/{id}
-    public function update(Request $request, $id)
+    // PUT /api/projects/{project}
+    public function update(Request $request, Project $project)
     {
-        $project = Project::findOrFail($id);
-
         $data = $request->validate([
             'name' => 'sometimes|required|string|max:255',
             'description' => 'nullable|string',
@@ -60,10 +58,9 @@ class ProjectController extends Controller
         return new ProjectResource($project);
     }
 
-    // DELETE /api/projects/{id}
-    public function destroy($id)
+    // DELETE /api/projects/{project}
+    public function destroy(Project $project)
     {
-        $project = Project::findOrFail($id);
         $project->delete();
 
         return response()->json([

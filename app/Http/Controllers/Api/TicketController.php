@@ -10,19 +10,18 @@ use App\Http\Resources\TicketResource;
 
 class TicketController extends Controller
 {
-    // GET /api/projects/{id}/tickets
-    public function indexByProject($id)
+    // GET /api/projects/{project}/tickets
+    public function index(Project $project)
     {
-        $project = Project::findOrFail($id);
-
-        return TicketResource::collection($project->tickets);
+        return TicketResource::collection(
+            $project->tickets()->paginate(10)
+        );
     }
 
-    // POST /api/projects/{id}/tickets
-    public function storeByProject(Request $request, $id)
+    // POST /api/projects/{project}/tickets
+    public function store(Request $request, Project $project)
     {
-        $project = Project::findOrFail($id); // regra: não cria se projeto não existir
-
+        // regra: não cria se projeto não existir (já garantido pelo Model Binding)
         $data = $request->validate([
             'title' => 'required|string|max:255',
             'description' => 'nullable|string',
@@ -34,19 +33,15 @@ class TicketController extends Controller
         return new TicketResource($ticket);
     }
 
-    // GET /api/tickets/{id}
-    public function show($id)
+    // GET /api/tickets/{ticket}
+    public function show(Ticket $ticket)
     {
-        $ticket = Ticket::findOrFail($id);
-
         return new TicketResource($ticket);
     }
 
-    // PATCH /api/tickets/{id}
-    public function update(Request $request, $id)
+    // PATCH /api/tickets/{ticket}
+    public function update(Request $request, Ticket $ticket)
     {
-        $ticket = Ticket::findOrFail($id);
-
         $data = $request->validate([
             'title' => 'sometimes|required|string|max:255',
             'description' => 'nullable|string',
@@ -58,10 +53,9 @@ class TicketController extends Controller
         return new TicketResource($ticket);
     }
 
-    // DELETE /api/tickets/{id}
-    public function destroy($id)
+    // DELETE /api/tickets/{ticket}
+    public function destroy(Ticket $ticket)
     {
-        $ticket = Ticket::findOrFail($id);
         $ticket->delete();
 
         return response()->json(null, 204);
