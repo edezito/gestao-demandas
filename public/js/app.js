@@ -58,7 +58,9 @@ async function createProject() {
 
         const res = await fetch(`${API}/projects`, {
             method: 'POST',
-            headers: {'Content-Type':'application/json'},
+            headers:
+            {'Content-Type':'application/json'},
+            'Accept': 'application/json',
             body: JSON.stringify({ name, description })
         });
 
